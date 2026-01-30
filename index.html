@@ -3,517 +3,878 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TTWidget - Power Your Widgets with AI</title>
+    <title>TTWidget - AI-Powered Campus Widgets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Flex:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <style>
+        /* Material 3 Design System */
         :root {
-            --bg-color: #0f1115;
-            --card-bg: #1e2229;
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --accent-teal: #7dd3fc; /* Similar to your Class Timetable button */
-            --accent-purple: #d8b4fe; /* Similar to your Mess Menu button */
-            --widget-bg-dark: #1C1C1E;
-            --widget-text-header: #9ca3af;
-            --btn-primary: #3b82f6;
-            --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Light Theme - Material 3 Dynamic Color */
+            --md-sys-color-primary: #006A6A;
+            --md-sys-color-on-primary: #FFFFFF;
+            --md-sys-color-primary-container: #6FF7F7;
+            --md-sys-color-on-primary-container: #002020;
+            
+            --md-sys-color-secondary: #4A6363;
+            --md-sys-color-on-secondary: #FFFFFF;
+            --md-sys-color-secondary-container: #CCE8E7;
+            --md-sys-color-on-secondary-container: #051F1F;
+            
+            --md-sys-color-tertiary: #4B607C;
+            --md-sys-color-on-tertiary: #FFFFFF;
+            --md-sys-color-tertiary-container: #D3E4FF;
+            --md-sys-color-on-tertiary-container: #041C35;
+            
+            --md-sys-color-error: #BA1A1A;
+            --md-sys-color-on-error: #FFFFFF;
+            --md-sys-color-error-container: #FFDAD6;
+            --md-sys-color-on-error-container: #410002;
+            
+            --md-sys-color-background: #FAFDFC;
+            --md-sys-color-on-background: #191C1C;
+            --md-sys-color-surface: #FAFDFC;
+            --md-sys-color-on-surface: #191C1C;
+            --md-sys-color-surface-variant: #DAE5E3;
+            --md-sys-color-on-surface-variant: #3F4948;
+            --md-sys-color-outline: #6F7978;
+            --md-sys-color-outline-variant: #BEC9C8;
+            
+            --md-sys-color-surface-container-lowest: #FFFFFF;
+            --md-sys-color-surface-container-low: #F4F7F6;
+            --md-sys-color-surface-container: #EEF1F0;
+            --md-sys-color-surface-container-high: #E8EBEA;
+            --md-sys-color-surface-container-highest: #E2E5E4;
+            
+            /* Elevation Shadows - Material 3 */
+            --md-sys-elevation-1: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+            --md-sys-elevation-2: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+            --md-sys-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+            --md-sys-elevation-4: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+            --md-sys-elevation-5: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
+            
+            /* Typography Scale - Material 3 */
+            --md-sys-typescale-display-large-font: 'Roboto Flex', sans-serif;
+            --md-sys-typescale-display-large-size: 57px;
+            --md-sys-typescale-display-large-line-height: 64px;
+            --md-sys-typescale-display-large-weight: 400;
+            
+            --md-sys-typescale-headline-large-font: 'Roboto Flex', sans-serif;
+            --md-sys-typescale-headline-large-size: 32px;
+            --md-sys-typescale-headline-large-line-height: 40px;
+            --md-sys-typescale-headline-large-weight: 400;
+            
+            --md-sys-typescale-headline-medium-font: 'Roboto', sans-serif;
+            --md-sys-typescale-headline-medium-size: 28px;
+            --md-sys-typescale-headline-medium-line-height: 36px;
+            --md-sys-typescale-headline-medium-weight: 400;
+            
+            --md-sys-typescale-title-large-font: 'Roboto', sans-serif;
+            --md-sys-typescale-title-large-size: 22px;
+            --md-sys-typescale-title-large-line-height: 28px;
+            --md-sys-typescale-title-large-weight: 400;
+            
+            --md-sys-typescale-body-large-font: 'Roboto', sans-serif;
+            --md-sys-typescale-body-large-size: 16px;
+            --md-sys-typescale-body-large-line-height: 24px;
+            --md-sys-typescale-body-large-weight: 400;
+            
+            --md-sys-typescale-label-large-font: 'Roboto', sans-serif;
+            --md-sys-typescale-label-large-size: 14px;
+            --md-sys-typescale-label-large-line-height: 20px;
+            --md-sys-typescale-label-large-weight: 500;
+            
+            /* Shape - Material 3 */
+            --md-sys-shape-corner-none: 0px;
+            --md-sys-shape-corner-extra-small: 4px;
+            --md-sys-shape-corner-small: 8px;
+            --md-sys-shape-corner-medium: 12px;
+            --md-sys-shape-corner-large: 16px;
+            --md-sys-shape-corner-extra-large: 28px;
+            --md-sys-shape-corner-full: 9999px;
+            
+            /* Motion */
+            --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+            --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+            --md-sys-motion-duration-short: 200ms;
+            --md-sys-motion-duration-medium: 300ms;
+            --md-sys-motion-duration-long: 400ms;
         }
-
+        
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --md-sys-color-primary: #4DDADA;
+                --md-sys-color-on-primary: #003737;
+                --md-sys-color-primary-container: #004F50;
+                --md-sys-color-on-primary-container: #6FF7F7;
+                
+                --md-sys-color-secondary: #B0CCCB;
+                --md-sys-color-on-secondary: #1B3534;
+                --md-sys-color-secondary-container: #324B4A;
+                --md-sys-color-on-secondary-container: #CCE8E7;
+                
+                --md-sys-color-tertiary: #B3C8E8;
+                --md-sys-color-on-tertiary: #1D334B;
+                --md-sys-color-tertiary-container: #344A63;
+                --md-sys-color-on-tertiary-container: #D3E4FF;
+                
+                --md-sys-color-error: #FFB4AB;
+                --md-sys-color-on-error: #690005;
+                --md-sys-color-error-container: #93000A;
+                --md-sys-color-on-error-container: #FFDAD6;
+                
+                --md-sys-color-background: #191C1C;
+                --md-sys-color-on-background: #E0E3E2;
+                --md-sys-color-surface: #191C1C;
+                --md-sys-color-on-surface: #E0E3E2;
+                --md-sys-color-surface-variant: #3F4948;
+                --md-sys-color-on-surface-variant: #BEC9C8;
+                --md-sys-color-outline: #889392;
+                --md-sys-color-outline-variant: #3F4948;
+                
+                --md-sys-color-surface-container-lowest: #0E1111;
+                --md-sys-color-surface-container-low: #191C1C;
+                --md-sys-color-surface-container: #1D2020;
+                --md-sys-color-surface-container-high: #272B2A;
+                --md-sys-color-surface-container-highest: #323535;
+            }
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
+            font-family: var(--md-sys-typescale-body-large-font);
+            font-size: var(--md-sys-typescale-body-large-size);
+            line-height: var(--md-sys-typescale-body-large-line-height);
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
             overflow-x: hidden;
         }
-
-        /* --- Layout Utilities --- */
+        
+        /* Material 3 Components */
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Top App Bar - Material 3 */
+        .md-top-app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 64px;
+            background-color: var(--md-sys-color-surface);
+            color: var(--md-sys-color-on-surface);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            z-index: 1000;
+            box-shadow: var(--md-sys-elevation-2);
+        }
+        
+        .md-top-app-bar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .md-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--md-sys-typescale-title-large-font);
+            font-size: var(--md-sys-typescale-title-large-size);
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface);
+            text-decoration: none;
+        }
+        
+        .md-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border-radius: var(--md-sys-shape-corner-large);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .md-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .md-nav-link {
+            padding: 10px 12px;
+            border-radius: var(--md-sys-shape-corner-full);
+            color: var(--md-sys-color-on-surface-variant);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+        }
+        
+        .md-nav-link:hover {
+            background-color: var(--md-sys-color-surface-container-highest);
+            color: var(--md-sys-color-on-surface);
+        }
+        
+        /* FAB - Floating Action Button - Material 3 */
+        .md-fab {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border: none;
+            height: 56px;
+            padding: 0 20px;
+            border-radius: var(--md-sys-shape-corner-large);
+            font-family: var(--md-sys-typescale-label-large-font);
+            font-size: var(--md-sys-typescale-label-large-size);
+            font-weight: var(--md-sys-typescale-label-large-weight);
+            box-shadow: var(--md-sys-elevation-3);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+            text-decoration: none;
+        }
+        
+        .md-fab:hover {
+            box-shadow: var(--md-sys-elevation-4);
+            transform: translateY(-2px);
+        }
+        
+        .md-fab:active {
+            transform: translateY(0);
+        }
+        
+        .md-fab-primary {
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 128px;
+            padding-bottom: 80px;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
-
-        section {
-            padding: 80px 0;
-        }
-
-        /* --- Header --- */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 17, 21, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
             align-items: center;
-            height: 70px;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        
+        .hero-content h1 {
+            font-family: var(--md-sys-typescale-display-large-font);
+            font-size: var(--md-sys-typescale-display-large-size);
+            line-height: var(--md-sys-typescale-display-large-line-height);
+            font-weight: var(--md-sys-typescale-display-large-weight);
+            color: var(--md-sys-color-on-background);
+            margin-bottom: 24px;
         }
-
-        .logo span {
-            color: var(--accent-teal);
+        
+        .hero-content p {
+            font-size: var(--md-sys-typescale-title-large-size);
+            line-height: var(--md-sys-typescale-title-large-line-height);
+            color: var(--md-sys-color-on-surface-variant);
+            margin-bottom: 32px;
+            max-width: 540px;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-teal);
-        }
-
-        .cta-btn-nav {
-            background: var(--text-main);
-            color: var(--bg-color);
-            padding: 8px 20px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: transform 0.2s;
-        }
-
-        .cta-btn-nav:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            padding-top: 150px;
-            padding-bottom: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 50px;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 500px;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent-teal), #3b82f6);
-            color: #000;
-            padding: 15px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
-        }
-
-        /* --- CSS Mockup of Widgets --- */
-        .hero-visual {
-            flex: 1;
+        
+        /* Widget Mockups - Material 3 Style */
+        .widget-showcase {
             display: flex;
             flex-direction: column;
             gap: 20px;
-            align-items: center;
-            position: relative;
+            max-width: 380px;
         }
-
-        .phone-mockup {
-            width: 300px;
-            position: relative;
+        
+        .md-widget {
+            background: var(--md-sys-color-surface-container-high);
+            border-radius: var(--md-sys-shape-corner-extra-large);
+            padding: 24px;
+            box-shadow: var(--md-sys-elevation-2);
+            transition: all var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-emphasized);
         }
-
-        /* Recreating the Widgets from your screenshot */
-        .widget {
-            background: var(--widget-bg-dark);
-            border-radius: 25px;
-            padding: 20px;
-            width: 100%;
-            margin-bottom: 15px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.1);
+        
+        .md-widget:hover {
+            box-shadow: var(--md-sys-elevation-3);
+            transform: translateY(-4px);
         }
-
+        
         .widget-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
-
+        
         .widget-label {
-            color: var(--widget-text-header);
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--md-sys-color-on-surface-variant);
             text-transform: uppercase;
         }
-
-        .widget-pill {
-            background: rgba(255,255,255,0.2);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #ccc;
+        
+        .md-badge {
+            background: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
+            padding: 4px 12px;
+            border-radius: var(--md-sys-shape-corner-small);
+            font-size: 12px;
+            font-weight: 500;
         }
-
+        
         .widget-title {
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 5px;
-            color: #fff;
+            font-family: var(--md-sys-typescale-headline-large-font);
+            font-size: var(--md-sys-typescale-headline-large-size);
+            line-height: var(--md-sys-typescale-headline-large-line-height);
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 8px;
         }
-
+        
         .widget-subtitle {
-            color: #FF9F0A; /* Orange like in screenshot */
-            font-weight: 600;
-            font-size: 1rem;
+            color: var(--md-sys-color-primary);
+            font-weight: 500;
+            font-size: 18px;
             margin-bottom: 20px;
         }
         
-        .widget-subtitle.mess {
-            color: var(--accent-purple);
+        .widget-subtitle.tertiary {
+            color: var(--md-sys-color-tertiary);
         }
-
+        
+        .widget-body {
+            color: var(--md-sys-color-on-surface);
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .widget-meta {
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
         .widget-footer {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #9ca3af;
-            font-size: 0.9rem;
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 14px;
+            margin-top: 16px;
         }
-
-        /* --- Features Grid --- */
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: var(--md-sys-color-surface-container-low);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        
+        .section-header h2 {
+            font-family: var(--md-sys-typescale-headline-large-font);
+            font-size: var(--md-sys-typescale-headline-large-size);
+            line-height: var(--md-sys-typescale-headline-large-line-height);
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 16px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: var(--md-sys-color-on-surface-variant);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s;
+        
+        /* Material 3 Card */
+        .md-card {
+            background: var(--md-sys-color-surface-container-highest);
+            border-radius: var(--md-sys-shape-corner-extra-large);
+            padding: 24px;
+            box-shadow: var(--md-sys-elevation-1);
+            transition: all var(--md-sys-motion-duration-medium) var(--md-sys-motion-easing-standard);
         }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.1);
+        
+        .md-card:hover {
+            box-shadow: var(--md-sys-elevation-3);
+            transform: translateY(-4px);
         }
-
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+        
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--md-sys-shape-corner-large);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 32px;
             margin-bottom: 20px;
         }
-
-        .icon-teal { background: rgba(125, 211, 252, 0.1); color: var(--accent-teal); }
-        .icon-purple { background: rgba(216, 180, 254, 0.1); color: var(--accent-purple); }
-        .icon-blue { background: rgba(59, 130, 246, 0.1); color: #60a5fa; }
-
-        .feature-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
+        
+        .icon-primary {
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
         }
-
-        .feature-card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        
+        .icon-secondary {
+            background: var(--md-sys-color-secondary-container);
+            color: var(--md-sys-color-on-secondary-container);
         }
-
-        /* --- How It Works --- */
-        .steps-container {
-            margin-top: 50px;
-            counter-reset: step-counter;
+        
+        .icon-tertiary {
+            background: var(--md-sys-color-tertiary-container);
+            color: var(--md-sys-color-on-tertiary-container);
         }
-
+        
+        .md-card h3 {
+            font-family: var(--md-sys-typescale-title-large-font);
+            font-size: var(--md-sys-typescale-title-large-size);
+            line-height: var(--md-sys-typescale-title-large-line-height);
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 12px;
+        }
+        
+        .md-card p {
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.6;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            margin-top: 48px;
+        }
+        
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        
         .step-item {
             display: flex;
+            gap: 20px;
             align-items: flex-start;
-            margin-bottom: 30px;
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: 15px;
         }
-
-        .step-item::before {
-            counter-increment: step-counter;
-            content: counter(step-counter);
-            min-width: 40px;
-            height: 40px;
-            background: var(--text-main);
-            color: var(--bg-color);
-            border-radius: 50%;
+        
+        .step-number {
+            min-width: 48px;
+            height: 48px;
+            background: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-radius: var(--md-sys-shape-corner-full);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            margin-right: 20px;
+            font-size: 18px;
         }
-
+        
         .step-content h4 {
-            margin-bottom: 5px;
-            font-size: 1.1rem;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 8px;
         }
-
+        
         .step-content p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.6;
         }
-
-        /* --- Footer --- */
-        footer {
-            background: #000;
-            padding: 50px 0;
-            margin-top: 50px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+        
+        .code-example {
+            background: var(--md-sys-color-surface-container-highest);
+            border-radius: var(--md-sys-shape-corner-large);
+            padding: 24px;
+            box-shadow: var(--md-sys-elevation-1);
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        
+        .code-comment {
+            color: var(--md-sys-color-outline);
+        }
+        
+        .code-key {
+            color: var(--md-sys-color-tertiary);
+        }
+        
+        .code-value {
+            color: var(--md-sys-color-primary);
+        }
+        
+        .code-string {
+            color: var(--md-sys-color-secondary);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--md-sys-color-primary-container);
             text-align: center;
         }
-
+        
+        .cta-section h2 {
+            font-family: var(--md-sys-typescale-headline-large-font);
+            font-size: var(--md-sys-typescale-headline-large-size);
+            color: var(--md-sys-color-on-primary-container);
+            margin-bottom: 16px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            color: var(--md-sys-color-on-primary-container);
+            opacity: 0.8;
+            margin-bottom: 32px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--md-sys-color-surface-container-low);
+            padding: 48px 0 24px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
         .footer-links {
-            margin-bottom: 20px;
+            display: flex;
+            gap: 24px;
         }
-
+        
         .footer-links a {
-            color: var(--text-muted);
-            margin: 0 15px;
+            color: var(--md-sys-color-on-surface-variant);
             text-decoration: none;
+            font-weight: 500;
+            transition: color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
         }
-
-        .copyright {
-            color: #555;
-            font-size: 0.8rem;
+        
+        .footer-links a:hover {
+            color: var(--md-sys-color-primary);
         }
-
-        /* --- Mobile Responsive --- */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 120px;
-                gap: 40px;
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--md-sys-color-outline-variant);
+            color: var(--md-sys-color-on-surface-variant);
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-
-            .nav-links {
+        }
+        
+        .animate-in {
+            animation: fadeInUp 0.6s var(--md-sys-motion-easing-emphasized) forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        
+        /* Responsive Design */
+        @media (max-width: 960px) {
+            .hero-grid,
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+            
+            .widget-showcase {
+                max-width: 100%;
+            }
+            
+            .md-nav {
                 display: none;
             }
-            
-            .hero-visual {
-                width: 100%;
+        }
+        
+        @media (max-width: 600px) {
+            .hero {
+                padding-top: 96px;
             }
             
-            .phone-mockup {
-                width: 100%;
-                max-width: 320px;
+            .hero-content h1 {
+                font-size: 36px;
+                line-height: 44px;
             }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Ripple Effect for buttons */
+        .md-fab,
+        .md-nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .md-fab::before,
+        .md-nav-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .md-fab:active::before,
+        .md-nav-link:active::before {
+            width: 300px;
+            height: 300px;
         }
     </style>
 </head>
 <body>
-
-    <header>
+    <!-- Top App Bar -->
+    <header class="md-top-app-bar">
         <div class="container">
-            <nav>
-                <div class="logo">
-                    <div style="width:30px; height:30px; background:#fff; border-radius:6px; margin-right:8px; display:grid; place-items:center;">
-                        <div style="width:14px; height:14px; border:2px solid #000; border-radius:50%;">
-                            <div style="width:2px; height:5px; background:#000; margin:1px auto;"></div>
-                        </div>
-                    </div>
-                    TTWidget
+            <a href="#" class="md-logo">
+                <div class="md-logo-icon">
+                    <span class="material-symbols-rounded">widgets</span>
                 </div>
-                <div class="nav-links">
-                    <a href="#features">Features</a>
-                    <a href="#how-it-works">How it Works</a>
-                    <a href="#download" class="cta-btn-nav">Download</a>
-                </div>
+                TTWidget
+            </a>
+            <nav class="md-nav">
+                <a href="#features" class="md-nav-link">Features</a>
+                <a href="#how-it-works" class="md-nav-link">How it Works</a>
+                <a href="https://github.com/mannat244/TTWidget/raw/main/app-release.apk" class="md-fab">
+                    <span class="material-symbols-rounded">download</span>
+                    Download
+                </a>
             </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container" style="display: inherit; align-items: inherit; justify-content: inherit; gap: inherit; flex-direction: inherit; width: 100%;">
-            <div class="hero-content">
-                <h1>Power your widgets <br>using AI.</h1>
-                <p>The easiest way to put your Class Timetable and Mess Menu directly on your home screen. No manual entry required.</p>
-                <a href="https://github.com/mannat244/TTWidget/raw/main/app-release.apk" class="download-btn">Download .APK</a>
-            </div>
-
-            <div class="hero-visual">
-                <div class="phone-mockup">
-                    <div class="widget">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1 class="animate-in">Power your widgets using AI</h1>
+                    <p class="animate-in delay-1">The easiest way to put your Class Timetable and Mess Menu directly on your home screen. No manual entry required.</p>
+                    <a href="https://github.com/mannat244/TTWidget/raw/main/app-release.apk" class="md-fab md-fab-primary animate-in delay-2">
+                        <span class="material-symbols-rounded">download</span>
+                        Download APK
+                    </a>
+                </div>
+                
+                <div class="widget-showcase animate-in delay-3">
+                    <div class="md-widget">
                         <div class="widget-header">
-                            <span class="widget-label">FRIDAY</span>
-                            <span class="widget-pill">DONE</span>
+                            <span class="widget-label">Friday</span>
+                            <span class="md-badge">Done</span>
                         </div>
                         <div class="widget-title">Free Time</div>
                         <div class="widget-subtitle">No more classes</div>
                         <div class="widget-footer">
-                            <span>☕</span> Relax
+                            <span class="material-symbols-rounded">coffee</span>
+                            Relax and unwind
                         </div>
                     </div>
-
-                    <div class="widget">
+                    
+                    <div class="md-widget">
                         <div class="widget-header">
-                            <span class="widget-label">MESS MENU</span>
-                            <span class="widget-pill" style="background:rgba(216,180,254,0.2); color:#e9d5ff">UP NEXT</span>
+                            <span class="widget-label">Mess Menu</span>
+                            <span class="md-badge" style="background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">Up Next</span>
                         </div>
                         <div class="widget-title">DINNER</div>
-                        <div class="widget-subtitle mess" style="color:#d8b4fe">Friday</div>
-                        <div style="color:#fff; font-size:0.9rem; font-weight:600; margin-bottom:5px;">CHANA MASALA /SEV TAMAT...</div>
-                        <div style="color:#6b7280; font-size:0.8rem; text-transform: uppercase;">RICE, CHAPATI, DAL, SALAD, PICKLE</div>
+                        <div class="widget-subtitle tertiary">Friday</div>
+                        <div class="widget-body">Chana Masala / Sev Tomato</div>
+                        <div class="widget-meta">Rice, Chapati, Dal, Salad, Pickle</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="features">
+    <!-- Features Section -->
+    <section id="features" class="features">
         <div class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 50px;">Campus life, automated.</h2>
+            <div class="section-header">
+                <h2>Campus life, automated</h2>
+                <p>Everything you need to stay organized, powered by AI and designed for students</p>
+            </div>
+            
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="icon-box icon-teal">📅</div>
-                    <h3>Class Timetable</h3>
+                <div class="md-card">
+                    <div class="card-icon icon-primary">
+                        <span class="material-symbols-rounded">calendar_month</span>
+                    </div>
+                    <h3>Class Timetable Widget</h3>
                     <p>Never miss a lecture. The widget automatically updates to show your current or upcoming class based on the day and time.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="icon-box icon-purple">🍽️</div>
-                    <h3>Mess Menu</h3>
-                    <p>Stop guessing what's for dinner. See the menu directly on your home screen without opening any PDFs or groups.</p>
+                
+                <div class="md-card">
+                    <div class="card-icon icon-secondary">
+                        <span class="material-symbols-rounded">restaurant</span>
+                    </div>
+                    <h3>Mess Menu Widget</h3>
+                    <p>Stop guessing what's for dinner. See the complete menu directly on your home screen without opening any PDFs or groups.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="icon-box icon-blue">🤖</div>
-                    <h3>AI Powered Setup</h3>
-                    <p>Don't type manually. Just take a screenshot of your schedule, let AI convert it to JSON, and paste it in. Done.</p>
+                
+                <div class="md-card">
+                    <div class="card-icon icon-tertiary">
+                        <span class="material-symbols-rounded">smart_toy</span>
+                    </div>
+                    <h3>AI-Powered Setup</h3>
+                    <p>Don't type manually. Just take a screenshot of your schedule, let AI convert it to JSON, and paste it in. Setup complete in seconds.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="how-it-works" style="background: rgba(255,255,255,0.02);">
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <div style="display:flex; flex-wrap:wrap; gap:50px; align-items:center;">
-                <div style="flex:1;">
-                    <h2 style="font-size: 2.5rem; margin-bottom: 30px;">Setup in seconds.</h2>
-                    <p style="color:var(--text-muted); margin-bottom:30px;">
-                        TTWidget uses the power of Gemini or ChatGPT to parse your schedules instantly.
-                    </p>
+            <div class="section-header">
+                <h2>Setup in seconds</h2>
+                <p>TTWidget uses the power of Gemini or ChatGPT to parse your schedules instantly</p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="steps-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Take a Screenshot</h4>
+                            <p>Capture your Class Timetable or Mess Menu from any format - PDF, image, or document.</p>
+                        </div>
+                    </div>
                     
-                    <div class="steps-container">
-                        <div class="step-item">
-                            <div class="step-content">
-                                <h4>Take a Screenshot</h4>
-                                <p>Capture your Class Timetable or Mess Menu.</p>
-                            </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Copy the Prompt</h4>
+                            <p>Inside TTWidget, copy the provided AI system prompt designed for accurate parsing.</p>
                         </div>
-                        <div class="step-item">
-                            <div class="step-content">
-                                <h4>Copy the Prompt</h4>
-                                <p>Inside TTWidget, copy the provided AI system prompt.</p>
-                            </div>
-                        </div>
-                        <div class="step-item">
-                            <div class="step-content">
-                                <h4>Ask AI & Paste</h4>
-                                <p>Upload screenshot to ChatGPT/Gemini, paste the prompt, and copy the JSON result back to the app.</p>
-                            </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Ask AI & Paste</h4>
+                            <p>Upload your screenshot to ChatGPT or Gemini with the prompt, then copy the JSON result back to the app. Done!</p>
                         </div>
                     </div>
                 </div>
                 
-                <div style="flex:1; background:#111; padding:30px; border-radius:20px; border:1px solid #333; font-family:monospace; font-size:0.9rem;">
-                    <div style="color:#6b7280; margin-bottom:10px;">// JSON Output Example</div>
-                    <div style="color:#d8b4fe;">{</div>
-                    <div style="padding-left:20px; color:#7dd3fc;">"Monday"</div><div style="color:#fff;">: [</div>
-                    <div style="padding-left:40px;">{</div>
-                    <div style="padding-left:60px; color:#a5f3fc;">"start"</div><div style="color:#fff;">: "09:00",</div>
-                    <div style="padding-left:60px; color:#a5f3fc;">"end"</div><div style="color:#fff;">: "10:00",</div>
-                    <div style="padding-left:60px; color:#a5f3fc;">"subject"</div><div style="color:#fff;">: "Data Structures"</div>
-                    <div style="padding-left:40px;">}</div>
-                    <div style="padding-left:20px; color:#fff;">]</div>
-                    <div style="color:#d8b4fe;">}</div>
+                <div class="code-example">
+                    <div class="code-comment">// JSON Output Example</div>
+                    <div><span class="code-key">{</span></div>
+                    <div style="padding-left: 20px;"><span class="code-string">"Monday"</span>: [</div>
+                    <div style="padding-left: 40px;">{</div>
+                    <div style="padding-left: 60px;"><span class="code-string">"start"</span>: <span class="code-value">"09:00"</span>,</div>
+                    <div style="padding-left: 60px;"><span class="code-string">"end"</span>: <span class="code-value">"10:00"</span>,</div>
+                    <div style="padding-left: 60px;"><span class="code-string">"subject"</span>: <span class="code-value">"Data Structures"</span>,</div>
+                    <div style="padding-left: 60px;"><span class="code-string">"location"</span>: <span class="code-value">"LRC A"</span></div>
+                    <div style="padding-left: 40px;">}</div>
+                    <div style="padding-left: 20px;">],</div>
+                    <div style="padding-left: 20px;"><span class="code-string">"Tuesday"</span>: [...]</div>
+                    <div><span class="code-key">}</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="download" style="text-align: center;">
+    <!-- CTA Section -->
+    <section class="cta-section">
         <div class="container">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Ready to organize your day?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 40px;">Download the APK and start using widgets today.</p>
-            <a href="https://github.com/mannat244/TTWidget/raw/main/app-release.apk" class="download-btn">Download for Android</a>
-            <p style="margin-top: 20px; font-size: 0.8rem; color: #555;">Version 1.0 • Android 10+</p>
+            <h2>Ready to organize your day?</h2>
+            <p>Download the APK and start using widgets today</p>
+            <a href="https://github.com/mannat244/TTWidget/raw/main/app-release.apk" class="md-fab md-fab-primary">
+                <span class="material-symbols-rounded">download</span>
+                Download for Android
+            </a>
+            <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;">Version 1.0 • Android 10+</p>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Support</a>
-                <a href="#">Twitter</a>
+            <div class="footer-content">
+                <div class="md-logo">
+                    <div class="md-logo-icon">
+                        <span class="material-symbols-rounded">widgets</span>
+                    </div>
+                    TTWidget
+                </div>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Support</a>
+                    <a href="https://github.com/mannat244/TTWidget">GitHub</a>
+                </div>
             </div>
-            <p class="copyright">&copy; 2026 TTWidget. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TTWidget. Designed with Material Design 3</p>
+            </div>
         </div>
     </footer>
 
@@ -522,10 +883,33 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.md-card').forEach(card => {
+            observer.observe(card);
         });
     </script>
 </body>
