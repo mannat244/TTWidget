@@ -1,6 +1,7 @@
 {
   "versionCode": 6,
   "versionName": "1.6",
-  "downloadUrl": "https://github.com/mannat244/TTWidget/releases/download/v1.5/app-release.apk",
-  "changeLog": "• Added Bunk Planner ✈️\n• Added Toxic Notification Mode 🚩"
+  "downloadUrl": "https://github.com/mannat244/TTWidget/releases/download/v1.6/app-release.apk",
+  "changeLog":"• Added Auto Update Features 🔄\n• Improved compatibility with aggressive UIs like Realme UI 📱"
+
 }
