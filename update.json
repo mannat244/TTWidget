@@ -1,7 +1,7 @@
 {
-  "versionCode": 6,
-  "versionName": "1.6",
-  "downloadUrl": "https://github.com/mannat244/TTWidget/releases/download/v1.6/app-release.apk",
-  "changeLog":"• Added Auto Update Features 🔄\n• Improved compatibility with aggressive UIs like Realme UI 📱"
+  "versionCode": 7,
+  "versionName": "1.7",
+  "downloadUrl": "https://github.com/mannat244/TTWidget/releases/download/v1.7/app-release.apk",
+  "changeLog":"• Added Swipe behavior to tabs\n• Added Holidays support\n• Added Compression & QR robustness"
 
 }
